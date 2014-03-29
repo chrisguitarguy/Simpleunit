@@ -78,7 +78,7 @@ foreach ($files as $file) {
     }
 
     $e = null; // make sure exception isn't set from earlier
-    echo '* ', ucwords(str_replace('_', ' ', $file->getBasename('_test.php'))), ': ';
+    echo '[TEST] ', ucwords(str_replace('_', ' ', $file->getBasename('_test.php'))), ': ';
     try {
         require $file->getRealPath();
     } catch (AssertionFailedException $e) {
@@ -104,8 +104,12 @@ foreach ($files as $file) {
 
         $trace = $e->getTrace();
         array_pop($trace); // last item is the `require $file->getRealPath()` statement
-        foreach ($trace as $line) {
-            printf("\t\t%s:%d", $trace['file'], $trace['line']);
+        if ($trace) {
+            echo PHP_EOL, "\tStack Trace";
+            foreach ($trace as $line) {
+                echo PHP_EOL;
+                printf("\t- %s:%d", $line['file'], $line['line']);
+            }
         }
     }
 
