@@ -1,7 +1,13 @@
 {
     "name": "chrisguitarguy/simpleunit"
     , "description": "The simplest PHP unit testing framework"
-    , "tags": ["testing", "test", "unitest"]
+    , "keywords": ["testing", "test", "unitest"]
+    , "license": "MIT"
+    , "homepage": "https://github.com/chrisguitarguy/Simpleunit"
+    , "authors": [{
+        "name": "Christopher Davis"
+        , "homepage": "http://christopherdavis.me"
+    }]
     , "require": {
         "php": ">=5.4"
     }
