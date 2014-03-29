@@ -1,0 +1,11 @@
+{
+    "name": "chrisguitarguy/simpleunit"
+    , "description": "The simplest PHP unit testing framework"
+    , "tags": ["testing", "test", "unitest"]
+    , "require": {
+        "php": ">=5.4"
+    }
+    , "bin": [
+        "simpleunit"
+    ]
+}
