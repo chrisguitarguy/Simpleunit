@@ -54,7 +54,6 @@ set_error_handler(function ($errno, $errstr, $file, $line) {
     throw new \ErrorException($errstr, 0, $errno, $file, $line);
 });
 
-
 // find all the files!
 $testDir = getenv('TESTS_DIR');
 try {
