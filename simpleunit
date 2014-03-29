@@ -65,8 +65,7 @@ try {
         \RecursiveIteratorIterator::LEAVES_ONLY
     );
 } catch (\Exception $e) {
-    printf("%s is not a valid directory", $testDir);
-    echo PHP_EOL;
+    echo $testDir, ' is not a valid directory', PHP_EOL;
     exit(1);
 }
 
