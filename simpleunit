@@ -84,8 +84,16 @@ foreach ($files as $file) {
     } catch (AssertionFailedException $e) {
         echo 'Failed', PHP_EOL;
         echo "\t", $e->getMessage();
-    } catch (\Exception $e) {
+    } catch (\ErrorException $e) {
         echo 'Error', PHP_EOL;
+        printf(
+            "\tPHP notice, warning, or error generated in %s:%d -- %s",
+            $e->getFile(),
+            $e->getLine(),
+            $e->getMessage()
+        );
+    } catch (\Exception $e) {
+        echo 'Uncaught Exception', PHP_EOL;
         printf(
             "\tUnexpected %s exception in %s:%d -- %s",
             get_class($e),
@@ -93,6 +101,12 @@ foreach ($files as $file) {
             $e->getLine(),
             $e->getMessage()
         );
+
+        $trace = $e->getTrace();
+        array_pop($trace); // last item is the `require $file->getRealPath()` statement
+        foreach ($trace as $line) {
+            printf("\t\t%s:%d", $trace['file'], $trace['line']);
+        }
     }
 
     // faking a try/except/else... almost
